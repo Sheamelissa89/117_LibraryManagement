@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home | Library Inventory{% endblock title %}
+
+{% block content %}
+
+<section class="home-section">
+
+    <div class="home-image">
+        <img src="{% static 'images/117Library.png' %}"
+     alt="Elegant library with bookshelves"
+     class="hero-image">
+    </div>
+
+    <div class="home-content">
+
+        <h1>Library Inventory Management System</h1>
+
+        <h2>Welcome to Our Library</h2>
+
+        <p>
+            Discover a simple and organized way to manage
+            your book collection.
+        </p>
+
+        <p>
+            Our Library Inventory Management System makes
+            it easy to view available books, explore
+            the collection, and maintain accurate
+            inventory records.
+        </p>
+
+        <p>
+            Built with Python and Django, this project
+            demonstrates database management,
+            dynamic content, and responsive web design.
+        </p>
+
+        <a href="{% url 'inventory' %}" class="btn-primary">
+            Explore Inventory
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock content %}

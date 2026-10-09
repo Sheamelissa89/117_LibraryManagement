@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Library Inventory{% endblock title %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>Library Inventory</h1>
+            </div>
+
+            <ul class="nav-links">
+                <li>
+                    <a href="{% url 'home' %}">Home</a>
+                </li>
+                <li>
+                    <a href="{% url 'inventory' %}">Inventory</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        {% block content %}
+        {% endblock content %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>
+            Library Inventory Management System
+            | Developed by Shea Melissa
+        </p>
+    </footer>
+
+</body>
+</html>

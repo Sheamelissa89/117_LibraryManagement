@@ -1,0 +1,544 @@
+/* =========================================
+   LIBRARY INVENTORY MANAGEMENT SYSTEM
+   Developed by Shea Melissa
+   ========================================= */
+
+/* ---------- Color Palette ---------- */
+
+:root {
+    --navy: #17263d;
+    --navy-light: #263b55;
+    --gold: #c7a45a;
+    --cream: #f8f5ed;
+    --white: #ffffff;
+    --text: #303947;
+    --muted: #667085;
+    --border: #e5dfd2;
+}
+
+/* ---------- Global Styles ---------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background-color: var(--cream);
+    color: var(--text);
+    line-height: 1.7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* ---------- Navigation ---------- */
+
+.navbar {
+    background-color: var(--navy);
+    color: var(--white);
+    padding: 1.25rem 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    border-bottom: 4px solid var(--gold);
+}
+
+.logo h1 {
+    color: var(--gold);
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--white);
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
+    color: var(--gold);
+}
+
+/* ---------- Main Container ---------- */
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 0;
+    flex: 1;
+}
+
+/* ---------- Homepage ---------- */
+
+.home-section {
+    display: grid;
+    grid-template-columns: 45% 55%;
+    align-items: center;
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 35px rgba(23, 38, 61, 0.12);
+    min-height: 480px;
+}
+
+.home-image {
+    height: 100%;
+    min-height: 480px;
+    background: var(--navy-light);
+}
+
+.home-image img {
+    width: 100%;
+    height: 100%;
+    min-height: 480px;
+    object-fit: cover;
+}
+
+.home-content {
+    padding: 3.5rem;
+}
+
+.home-content h1 {
+    color: var(--navy);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
+}
+
+.home-content h2 {
+    color: var(--gold);
+    font-size: 1.4rem;
+    margin-bottom: 1.25rem;
+}
+
+.home-content p {
+    font-size: 1.05rem;
+    margin-bottom: 1.2rem;
+}
+
+/* ---------- Primary Buttons ---------- */
+
+.btn-primary,
+.inventory-footer .btn {
+    display: inline-block;
+    padding: 0.9rem 1.8rem;
+    background-color: var(--navy);
+    color: var(--white);
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition:
+        background-color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.btn-primary {
+    margin-top: 1.5rem;
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible,
+.inventory-footer .btn:hover,
+.inventory-footer .btn:focus-visible {
+    background-color: var(--navy-light);
+    transform: translateY(-2px);
+}
+
+/* =========================================
+   INVENTORY PAGE
+   ========================================= */
+
+/* ---------- Inventory Section ---------- */
+
+.inventory-section {
+    background: var(--white);
+    padding: 3rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(23, 38, 61, 0.1);
+    width: 100%;
+}
+
+/* ---------- Inventory Heading ---------- */
+
+.inventory-section h1 {
+    color: var(--navy);
+    font-size: clamp(1.7rem, 3vw, 2.2rem);
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 0.75rem;
+}
+
+.inventory-heading {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.inventory-heading h1 {
+    color: var(--navy);
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+.inventory-heading p,
+.inventory-section > p {
+    color: var(--text);
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+/* ---------- Inventory Grid ---------- */
+
+.inventory-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.book-card {
+    padding: 1.5rem;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.book-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(23, 38, 61, 0.1);
+}
+
+.book-card h2 {
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+}
+
+/* =========================================
+   INVENTORY TABLE
+   ========================================= */
+
+/* ---------- Table Container ---------- */
+
+.inventory-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin: 2rem 0;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(23, 38, 61, 0.06);
+}
+
+/* ---------- Table Layout ---------- */
+
+.inventory-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: var(--white);
+    table-layout: auto;
+}
+
+/* ---------- Table Header ---------- */
+
+.inventory-table thead {
+    background-color: var(--navy);
+}
+
+.inventory-table th {
+    background-color: var(--navy);
+    color: var(--gold);
+    padding: 1.1rem 1rem;
+    text-align: left;
+    font-size: 0.95rem;
+    font-weight: bold;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    border-bottom: 2px solid var(--gold);
+}
+
+/* ---------- Table Data ---------- */
+
+.inventory-table td {
+    padding: 1rem;
+    color: var(--text);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+}
+
+/* ---------- Column Alignment ---------- */
+
+.inventory-table th:nth-child(4),
+.inventory-table td:nth-child(4),
+.inventory-table th:nth-child(5),
+.inventory-table td:nth-child(5) {
+    text-align: center;
+}
+
+/* ---------- Alternating Rows ---------- */
+
+.inventory-table tbody tr:nth-child(even) {
+    background-color: var(--cream);
+}
+
+.inventory-table tbody tr:nth-child(odd) {
+    background-color: var(--white);
+}
+
+/* ---------- Row Hover ---------- */
+
+.inventory-table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.inventory-table tbody tr:hover {
+    background-color: #f0e8d6;
+}
+
+.inventory-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ---------- Book Titles ---------- */
+
+.inventory-table td:first-child {
+    color: var(--navy);
+    font-weight: bold;
+}
+
+/* ---------- ISBN Formatting ---------- */
+
+.inventory-table td:nth-child(3) {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+/* =========================================
+   AVAILABILITY BADGES
+   ========================================= */
+
+.available,
+.unavailable {
+    display: inline-block;
+    padding: 0.4rem 0.85rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.available {
+    background-color: #e4f3e8;
+    color: #246b3a;
+    border: 1px solid #c6e7ce;
+}
+
+.unavailable {
+    background-color: #fce8e6;
+    color: #a4262c;
+    border: 1px solid #f3c7c4;
+}
+
+/* ---------- Empty Inventory ---------- */
+
+.empty-message {
+    text-align: center;
+    padding: 2rem;
+    color: var(--muted);
+    font-style: italic;
+}
+
+/* =========================================
+   INVENTORY FOOTER
+   ========================================= */
+
+.inventory-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--gold);
+}
+
+.inventory-footer p {
+    color: var(--navy);
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+/* ---------- Return Home Button ---------- */
+
+.inventory-footer .btn {
+    padding: 0.8rem 1.5rem;
+}
+
+/* =========================================
+   SITE FOOTER
+   ========================================= */
+
+footer {
+    background-color: var(--navy);
+    color: var(--white);
+    text-align: center;
+    padding: 1.5rem;
+    border-top: 3px solid var(--gold);
+    margin-top: auto;
+}
+
+footer p {
+    font-size: 0.9rem;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+
+/* ---------- Tablets ---------- */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .nav-links {
+        justify-content: center;
+    }
+
+    .container {
+        width: 94%;
+        padding: 2rem 0;
+    }
+
+    .home-section {
+        grid-template-columns: 1fr;
+    }
+
+    .home-image,
+    .home-image img {
+        height: 280px;
+        min-height: 280px;
+    }
+
+    .home-content {
+        padding: 2rem;
+    }
+
+    .inventory-section {
+        padding: 1.5rem;
+    }
+
+    .inventory-heading h1 {
+        font-size: 1.7rem;
+    }
+
+    .inventory-table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .inventory-table {
+        min-width: 760px;
+    }
+
+    .inventory-table th,
+    .inventory-table td {
+        padding: 0.8rem;
+        font-size: 0.85rem;
+    }
+
+    .inventory-footer {
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+    }
+}
+
+/* ---------- Mobile Phones ---------- */
+
+@media (max-width: 480px) {
+
+    .logo h1 {
+        font-size: 1.2rem;
+    }
+
+    .nav-links {
+        gap: 1.5rem;
+    }
+
+    .home-content {
+        padding: 1.5rem;
+    }
+
+    .home-content h1 {
+        font-size: 1.7rem;
+    }
+
+    .home-content p {
+        font-size: 1rem;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+
+    .inventory-section {
+        padding: 1.25rem;
+    }
+
+    .inventory-heading h1 {
+        font-size: 1.5rem;
+    }
+
+    .inventory-heading p {
+        font-size: 0.95rem;
+    }
+
+    .inventory-table-wrapper {
+        margin: 1.5rem 0;
+    }
+
+    .inventory-footer .btn {
+        width: 100%;
+    }
+
+    footer p {
+        font-size: 0.8rem;
+    }
+}

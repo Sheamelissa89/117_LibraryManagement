@@ -1,0 +1,237 @@
+{% extends 'base.html' %}
+
+{% block title %}Book Inventory | Library Inventory{% endblock %}
+
+{% block content %}
+
+<section class="inventory-section">
+
+    <div class="inventory-heading">
+        <h1>Our Book Collection</h1>
+        <p>
+            Explore our library collection and view
+            available books, authors, publication
+            details, and inventory quantities.
+        </p>
+    </div>
+
+    <div class="inventory-table-wrapper">
+        <table class="inventory-table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>ISBN</th>
+                    <th>Publication Year</th>
+                    <th>Quantity</th>
+                    <th>Availability</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for book in books %}
+                <tr>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.isbn }}</td>
+                    <td>{{ book.publication_year }}</td>
+                    <td>{{ book.quantity }}</td>
+                    <td>
+                        {% if book.quantity > 0 %}
+                            <span class="available">
+                                Available
+                            </span>
+                        {% else %}
+                            <span class="unavailable">
+                                Out of Stock
+                            </span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="empty-message">
+                        No books have been added yet.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="inventory-footer">
+        <p>
+            Total Book Titles:
+            <strong>{{ books|length }}</strong>
+        </p>
+
+        <a href="{% url 'home' %}" class="btn">
+            Return Home
+        </a>
+    </div>
+
+</section>
+
+{% endblock %}
+
+/* =========================================
+   LIBRARY INVENTORY PAGE
+   ========================================= */
+
+.inventory-section {
+    width: 90%;
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 35px;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Heading */
+
+.inventory-heading {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.inventory-heading h1 {
+    color: #172840;
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+}
+
+.inventory-heading p {
+    color: #4a5568;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+/* Table Container */
+
+.inventory-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin-bottom: 30px;
+}
+
+/* Inventory Table */
+
+.inventory-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+}
+
+.inventory-table th {
+    background: #172840;
+    color: #d4a64c;
+    padding: 18px 15px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.inventory-table td {
+    padding: 16px 15px;
+    border-bottom: 1px solid #e5e7eb;
+    color: #172840;
+}
+
+.inventory-table tbody tr:nth-child(even) {
+    background: #f8f6f0;
+}
+
+.inventory-table tbody tr:hover {
+    background: #f1e8d5;
+    transition: background 0.2s ease;
+}
+
+/* Availability */
+
+.available {
+    display: inline-block;
+    background: #e5f5e9;
+    color: #237a3b;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.unavailable {
+    display: inline-block;
+    background: #fde8e8;
+    color: #b42318;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+/* Empty Inventory */
+
+.empty-message {
+    text-align: center;
+    padding: 30px;
+    color: #6b7280;
+}
+
+/* Footer */
+
+.inventory-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-top: 20px;
+    border-top: 2px solid #d4a64c;
+}
+
+.inventory-footer p {
+    color: #172840;
+    font-size: 1rem;
+}
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+    .inventory-section {
+        width: 95%;
+        padding: 20px 12px;
+        margin: 30px auto;
+    }
+
+    .inventory-heading h1 {
+        font-size: 1.7rem;
+    }
+
+    .inventory-table {
+        min-width: 750px;
+    }
+
+    .inventory-table th,
+    .inventory-table td {
+        padding: 12px 10px;
+        font-size: 0.9rem;
+    }
+
+    .inventory-footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+.inventory-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+}
+
+.inventory-table th {
+    background: #172840;
+    color: #d4a64c;
+    padding: 18px 15px;
+    text-align: left;
+    font-weight: 600;
+}
